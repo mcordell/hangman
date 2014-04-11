@@ -3,11 +3,12 @@ class HangmanGame
 
     attr_accessor :target_word, :char_map, :max_limbs, :current_limbs, :guess_list
 
-    def initialize(desired_word)
+    def initialize(game)
+      @current_limbs = game[:current_limbs] || 0
+      @max_limbs = game[:max_limbs] || 8
+      @guess_list = game[:guess_list] || []
       @char_map = {}
-      @guess_list = []
-      @current_limbs = 0
-      self.target_word = desired_word if desired_word
+      self.target_word = game[:target_word] if game[:target_word]
     end
 
     def target_word=(target)
@@ -73,23 +74,27 @@ class HangmanGame
     def duplicate_guess?(input)
       guess_list.include? input
     end
+
+    def to_hash
+      { target_word: target_word, guess_list: guess_list, current_limbs: current_limbs, max_limbs: max_limbs }
+    end
 end
 
 
-game = HangmanGame.new('corn')
-game.max_limbs = 8
+#game = HangmanGame.new('corn')
+#game.max_limbs = 8
 
 # game.guess('c').each_with_index { |c,i| puts "#{i} : #{c}"}
 # puts game.guess('z')
 
-until game.over?
-  puts game.guess(gets.chomp!)
-  puts game.current_state
+#until game.over?
+#  puts game.guess(gets.chomp!)
+#  puts game.current_state
   # puts game.guess_list.join
-end
+#end
 
-if game.won?
-  puts "You won!"
-else
-  puts "You suck."
-end
+#if game.won?
+#  puts "You won!"
+#else
+#  puts "You suck."
+#end
