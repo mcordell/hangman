@@ -9,5 +9,13 @@
       <p>Guess: <input type="text" name="guess" /></p>
       <p><input type="submit" /></p>
     </form>
+    <p>
+      <% @game.target_word.each_char do |c| %>
+      <% if @game.guess_list.include? c %>
+        <%= c %>
+      <% else %>
+        _
+      <% end %>
+    </p>
   </body>
 </html>
