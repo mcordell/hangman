@@ -11,10 +11,11 @@
     </form>
     <p>
       <% @game.target_word.each_char do |c| %>
-      <% if @game.guess_list.include? c %>
-        <%= c %>
-      <% else %>
-        _
+        <% if @game.guess_list.include? c %>
+          <%= c %>
+        <% else %>
+          _
+        <% end %>
       <% end %>
     </p>
   </body>
