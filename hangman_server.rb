@@ -6,13 +6,18 @@ enable :sessions
 
 get '/' do
   session[:game_state] = nil
+  erb :index
+end
+
+get '/play' do
   if session[:game_state]
     @game = HangmanGame.new(session[:game_state])
   else
     @game = HangmanGame.new({target_word: RandomWord.nouns.next})
   end
+
   session[:game_state] = @game.to_hash
-  erb :index
+  erb :play
 end
 
 post '/guess' do

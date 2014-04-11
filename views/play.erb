@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  </head>
+
+  <body>
+    <form action="/guess" method="post">
+      <p>You have <%= @game.max_limbs - @game.current_limbs %> remaining limbs.</p>
+      <p>Guess: <input type="text" name="guess" /></p>
+      <p><input type="submit" /></p>
+    </form>
+  </body>
+</html>
