@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  </head>
+
+  <body>
+    <% if @game.won? %>
+      <p>You won!</p>
+    <% else %>
+      <p>You lost!</p>
+    <% end %>
+  </body>
+</html>

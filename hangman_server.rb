@@ -17,7 +17,18 @@ get '/play' do
   end
 
   session[:game_state] = @game.to_hash
+  redirect to('/end') if @game.over?
   erb :play
+end
+
+get '/end' do
+  if session[:game_state]
+    @game = HangmanGame.new(session[:game_state])
+  else
+    @game = HangmanGame.new({target_word: RandomWord.nouns.next})
+  end
+
+  erb :end
 end
 
 post '/guess' do
